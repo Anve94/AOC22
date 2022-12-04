@@ -1,3 +1,5 @@
+from os import path
+
 choice_score_mapping = {
     'X': 1, # Rock
     'Y': 2, # Paper
@@ -53,8 +55,11 @@ decision_mapping = {
 }
 
 def input_to_strategy_list() -> list:
+    here = path.dirname(path.abspath(__file__))
+    filename = path.join(here, '02-1.txt')
+
     strategy_list = []
-    with open('02-1.txt', 'r') as f:
+    with open(filename, 'r') as f:
         for line in f:
             found = line.rstrip('\n').split()
             strategy_list.append(found)

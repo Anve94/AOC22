@@ -1,7 +1,13 @@
+from os import path
+
 totals = []
 total = 0
 top_limit = 3
-with open('01-1.txt', 'r') as f:
+
+here = path.dirname(path.abspath(__file__))
+filename = path.join(here, '01-1.txt')
+    
+with open(filename, 'r') as f:
     for line in f:
         found = line.strip('\n')
         if found == '':

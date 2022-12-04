@@ -1,9 +1,14 @@
+from os import path
+
 LOWER_CASE_OFFSET = 96 # Offset from ASCII to ensure a starts at 1
 UPPER_CASE_OFFSET = 38 # Offset from ASCII to ensure A starts at 27
 
 def input_to_backpacks() -> list:
+    here = path.dirname(path.abspath(__file__))
+    filename = path.join(here, '03-1.txt')
     backpacks = []
-    with open('03-1.txt', 'r') as f:
+    
+    with open(filename, 'r') as f:
         for line in f:
             backpack = line.rstrip('\n')
             backpacks.append(backpack)
@@ -50,6 +55,5 @@ def check_groups(groups: list) -> list:
         
 backpacks = input_to_backpacks()
 groups = get_groups(backpacks)
-print(groups)
 found = check_groups(groups)
 print(items_to_priority(found))
