@@ -26,7 +26,6 @@ def create_fs(user_input: list) -> dict:
             elif command_part[2] == '..':
                 # Sanity check for root dir
                 if dir_stack[-1] != '/':
-                    # dvaluete the last valuement from the stack
                     dir_stack.pop()
             else:
                 dir_stack.append(command_part[2])
