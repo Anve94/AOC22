@@ -42,9 +42,7 @@ def is_visible(section: list, tree_height: int):
 
 def problem1(trees: list) -> int:
     visible_found = 0
-    # Row index and row value
     for row_index, row_value in enumerate(trees):
-        # Column index and column value
         for col_index, col_value in enumerate(trees):
             if visible_sides(trees, row_index, col_index) > 0:
                 visible_found += 1
