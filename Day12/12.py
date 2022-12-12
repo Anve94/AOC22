@@ -143,8 +143,8 @@ def astar(maze, start, end):
                 else:
                     heapq.heappush(open_list, child)
 
-    print("Couldn't get a path :(")
-    return None
+    print("Couldn't get a path :( Simulting path of length 9999")
+    return [(0,0) for _ in range(9999)]
         
 
 def find_start_position(instructions):
@@ -178,15 +178,31 @@ def handle_input():
         costs.append([ord(x) - LOWER_CASE_OFFSET for x in row])
 
     start = find_start_position(instructions)
-    costs[start[0]][start[1]] = 0
+    costs[start[0]][start[1]] = 1
     end = find_end_position(instructions)
-    costs[end[0]][end[1]] = 27
+    costs[end[0]][end[1]] = 26
 
     return (costs, start, end)
 
 
+# Part 1
 maze, start, end = handle_input()
 start_time = timer()
 print(f'A* Solution 1: {len(astar(maze, start, end)) - 1}')
 end_time = timer()
-print(f' Done in {end_time - start_time}s')
+print(f'    Done in {end_time - start_time}s')
+
+# Part 2
+start_positions = [(y, 0) for y in range(len(maze))]
+lengths = []
+print('Starting long calculations. Please bare with us.')
+total_time_start = timer()
+for start in start_positions:
+    time_start = timer()
+    found_path = astar(maze, start, end)
+    path_length = len(found_path) - 1
+    lengths.append(path_length)
+    time_end = timer()
+    print(f'    Found path with distance {path_length} in {time_end - time_start}s')
+total_time_end = timer()
+print(f'Found solution in {total_time_end - total_time_start}s: {min(lengths)}')
