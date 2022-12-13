@@ -10,10 +10,10 @@ def compare(left, right):
     """
     match left, right:
         case int(), list():
-            # Compare left as list if only left is list
+            # Compare left as list if only right is list
             return compare([left], right)
         case list(), int():
-            # Compare right as list if only right is list
+            # Compare right as list if only left is list
             return compare(left, [right])
         case list(), list():
             # Iterate over list recursively
